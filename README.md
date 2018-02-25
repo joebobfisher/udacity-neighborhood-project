@@ -15,22 +15,22 @@ places.
 * All APIs must be loaded asynchronously
 
 
-[] Download KnockoutJS
+* Download KnockoutJS
     * Create markers in ViewModel, _not_ as Knockout observables.
-[] Add full-screen Google Maps map. Call map API only once.
-[] Display map markers at >= 5 locations within neighborhood, by default when
+* Add full-screen Google Maps map. Call map API only once.
+* Display map markers at >= 5 locations within neighborhood, by default when
 page is loaded.
-[] Add list view of those 5 locations.
-[] Add filter input field to filter locations (in list view + map)
+* Add list view of those 5 locations.
+* Add filter input field to filter locations (in list view + map)
     * List view & map markers should update in real time.
     * Can't use a 3rd part API for this search/filter.
     * Filter can be text or dropdown menu
-[] Use non-Google Maps 3rd party APIs to give info when a map marker or list
+* Use non-Google Maps 3rd party APIs to give info when a map marker or list
 view entry is clicked.
     * Implement as infoWindow
-[] Provide attribution to data sources/APIs used.
-[] Animate map marker when list item or marker itself is clicked.
-[] Handle errors gracefully
+* Provide attribution to data sources/APIs used.
+* Animate map marker when list item or marker itself is clicked.
+* Handle errors gracefully
     * Handle "can't load" or "can't reach site" for all APIs called.
 
 # Attributions and Stuff I Used
