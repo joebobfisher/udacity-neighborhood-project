@@ -8,12 +8,15 @@ places.
 
 # TODO
 
-[Project Details Page](https://classroom.udacity.com/nanodegrees/nd004/parts/135b6edc-f1cd-4cd9-b831-1908ede75737/modules/4fd8d440-9428-4de7-93c0-4dca17a36700/lessons/2711658591239847/concepts/26906985370923)
+## Keep In Mind
+
+* [Project Details Page](https://classroom.udacity.com/nanodegrees/nd004/parts/135b6edc-f1cd-4cd9-b831-1908ede75737/modules/4fd8d440-9428-4de7-93c0-4dca17a36700/lessons/2711658591239847/concepts/26906985370923)
 
 * Use KnockoutJS
 * Interface must be intuitive!
 * All APIs must be loaded asynchronously
 
+## TODO List
 
 * Download KnockoutJS
     * Create markers in ViewModel, _not_ as Knockout observables.
