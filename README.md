@@ -17,9 +17,9 @@ places.
 
 ## TODO List
 
-* Download KnockoutJS
+~~* Download KnockoutJS~~
     * Create markers in ViewModel, _not_ as Knockout observables.
-* Add full-screen Google Maps map. Call map API only once.
+~~* Add full-screen Google Maps map. Call map API only once.~~
 * Display map markers at >= 5 locations within neighborhood, by default when
 page is loaded.
 * Add list view of those 5 locations.
