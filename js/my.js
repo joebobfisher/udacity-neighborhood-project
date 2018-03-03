@@ -11,11 +11,11 @@ var initialPlaces = [
 var Neighborhood;
 
 // Model
+// Knockout should be used to handle the list, filter, and any other information
+// on the page that is subject to changing state.
 var Place = function(data) {
   this.name = ko.observable(data.name);
   this.loc = ko.observable(data.loc);
-
-  this.marker = ko.observable();
 };
 
 // View Model
@@ -29,6 +29,8 @@ var ViewModel = function() {
   });
 
   this.place = ko.observable(this.places()[0]);
+
+  this.markers = [];
 };
 
 var vm = new ViewModel();
@@ -36,10 +38,22 @@ var vm = new ViewModel();
 ko.applyBindings(vm);
 
 function startMap() {
+  // initialize neighborhood map
   Neighborhood = new google.maps.Map(document.getElementById('map'), {
     zoom: 13,
     center: vm.place().loc()
   });
-}
 
-// http://www.hoonzis.com/knockoutjs-and-google-maps-binding/
+  // initialize markers
+  for (var i = 0; i < vm.places().length; i++) {
+    var marker = new google.maps.Marker({
+      id: i,
+      map: Neighborhood,
+      position: vm.places()[i].loc(),
+      title: vm.places()[i].name(),
+      animation: google.maps.Animation.DROP
+    });
+
+    vm.markers.push(marker);
+  }
+}
