@@ -28,9 +28,13 @@ var ViewModel = function() {
     self.places.push(new Place(place));
   });
 
-  this.place = ko.observable(this.places()[0]);
+  this.place = ko.observable();
 
   this.markers = [];
+
+  this.setPlace = function(clickedPlace) {
+    self.place(clickedPlace);
+  };
 };
 
 var vm = new ViewModel();
@@ -41,8 +45,10 @@ function startMap() {
   // initialize neighborhood map
   Neighborhood = new google.maps.Map(document.getElementById('map'), {
     zoom: 13,
-    center: vm.place().loc()
+    center: vm.places()[0].loc()
   });
+
+  var infoWindow = new google.maps.InfoWindow();
 
   // initialize markers
   for (var i = 0; i < vm.places().length; i++) {
@@ -55,5 +61,20 @@ function startMap() {
     });
 
     vm.markers.push(marker);
+
+    marker.addListener('click', function() {
+      doInfoWindow(this, infoWindow);
+    });
+
+    function doInfoWindow(marker, infoWindow) {
+      if (infoWindow.marker != marker) {
+        infoWindow.marker = marker;
+        infoWindow.addListener('closeclick', function() {
+          infoWindow.marker = null;
+        });
+        infoWindow.setContent("<div>" + marker.title + "</div>");
+        infoWindow.open(Neighborhood, marker);
+      }
+    }
   }
 }

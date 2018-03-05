@@ -9,9 +9,14 @@
 </head>
 <body>
   <div class="container-fluid">
-    <div class="row">
+    <div class="row no-gutters">
       <div class="col-md-2">
-        <!-- Just do a static sidebar for the list view, for now. Use Bootstrap to make it + the map responsive -->
+        <h3>My Favorite Places</h3>
+        <hr/>
+        <div data-bind="foreach: places">
+          <a href="#" data-bind="text: name, click: $parent.setPlace"></a>
+          <hr/>
+        </div>
       </div>
       <div class="col-md-10">
         <div id="map"></div>
