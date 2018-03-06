@@ -7,8 +7,9 @@ var initialPlaces = [
   { name: "Library",       loc: { lat: 42.496388, lng: -92.340966 } }
 ];
 
-// Map object
+// Map & InfoWindow objects
 var Neighborhood;
+var infoWindow;
 
 // Model
 // Knockout should be used to handle the list, filter, and any other information
@@ -34,7 +35,17 @@ var ViewModel = function() {
 
   this.setPlace = function(clickedPlace) {
     self.place(clickedPlace);
-    selectPlace(self.place);
+
+    Neighborhood.setCenter(self.place().loc());
+
+    var marker;
+    for (var i = 0; i < self.places().length; i++) {
+      if (self.place().loc() === self.places()[i].loc()) {
+        marker = self.markers[i];
+        break;
+      }
+    }
+    doInfoWindow(marker, infoWindow);
   };
 };
 
@@ -49,7 +60,8 @@ function startMap() {
     center: vm.places()[0].loc()
   });
 
-  var infoWindow = new google.maps.InfoWindow();
+  infoWindow = new google.maps.InfoWindow();
+
   var bounds = new google.maps.LatLngBounds();
 
   // initialize markers
@@ -83,8 +95,4 @@ function doInfoWindow(marker, infoWindow) {
     infoWindow.setContent("<div>" + marker.title + "</div>");
     infoWindow.open(Neighborhood, marker);
   }
-}
-
-function selectPlace(place) {
-  Neighborhood.setCenter(place().loc());
 }
