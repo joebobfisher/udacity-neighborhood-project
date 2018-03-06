@@ -34,6 +34,7 @@ var ViewModel = function() {
 
   this.setPlace = function(clickedPlace) {
     self.place(clickedPlace);
+    selectPlace(self.place);
   };
 };
 
@@ -49,6 +50,7 @@ function startMap() {
   });
 
   var infoWindow = new google.maps.InfoWindow();
+  var bounds = new google.maps.LatLngBounds();
 
   // initialize markers
   for (var i = 0; i < vm.places().length; i++) {
@@ -66,15 +68,23 @@ function startMap() {
       doInfoWindow(this, infoWindow);
     });
 
-    function doInfoWindow(marker, infoWindow) {
-      if (infoWindow.marker != marker) {
-        infoWindow.marker = marker;
-        infoWindow.addListener('closeclick', function() {
-          infoWindow.marker = null;
-        });
-        infoWindow.setContent("<div>" + marker.title + "</div>");
-        infoWindow.open(Neighborhood, marker);
-      }
-    }
+    bounds.extend(marker.position);
   }
+
+  Neighborhood.fitBounds(bounds);
+}
+
+function doInfoWindow(marker, infoWindow) {
+  if (infoWindow.marker != marker) {
+    infoWindow.marker = marker;
+    infoWindow.addListener('closeclick', function() {
+      infoWindow.marker = null;
+    });
+    infoWindow.setContent("<div>" + marker.title + "</div>");
+    infoWindow.open(Neighborhood, marker);
+  }
+}
+
+function selectPlace(place) {
+  Neighborhood.setCenter(place().loc());
 }
