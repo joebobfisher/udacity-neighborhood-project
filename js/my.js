@@ -1,10 +1,11 @@
 // Initial data
 var initialPlaces = [
-  { name: "My House",      loc: { lat: 42.480018, lng: -92.363529 } },
+  { name: "House",         loc: { lat: 42.480018, lng: -92.363529 } },
   { name: "Work",          loc: { lat: 42.478491, lng: -92.454093 } },
   { name: "Grocery Store", loc: { lat: 42.458456, lng: -92.330557 } },
   { name: "Church",        loc: { lat: 42.515738, lng: -92.413237 } },
-  { name: "Library",       loc: { lat: 42.496388, lng: -92.340966 } }
+  { name: "Library",       loc: { lat: 42.496388, lng: -92.340966 } },
+  { name: "School",        loc: { lat: 42.479395, lng: -92.362301 } }
 ];
 
 // Map & InfoWindow objects
