@@ -20,6 +20,10 @@ var Place = function(data) {
   this.loc = ko.observable(data.loc);
 };
 
+var MilesAway = function(data) {
+  this.miles = ko.observable(data);
+}
+
 // View Model
 var ViewModel = function() {
   var self = this;
@@ -47,6 +51,12 @@ var ViewModel = function() {
       }
     }
     doInfoWindow(marker, infoWindow);
+  };
+
+  this.milesAway = ko.observableArray([1, 2, 5, 10]);
+  this.milesFilter = ko.observable(this.milesAway()[this.milesAway().length-1]);
+  this.setMiles = function(milesSelected) {
+    self.milesFilter = milesSelected;
   };
 };
 

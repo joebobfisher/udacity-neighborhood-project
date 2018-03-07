@@ -13,6 +13,15 @@
       <div class="col-md-2">
         <h3>My Favorite Places</h3>
         <hr/>
+        <div class="dropdown">
+          <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            X Miles Away From
+          </button>
+          <div class="dropdown-menu" data-bind="foreach: milesAway">
+            <a class="dropdown-item" href="#" data-bind="text: $data, click: $parent.setMiles"></a>
+          </div>
+        </div>
+        <hr/>
         <div data-bind="foreach: places">
           <a href="#" data-bind="text: name, click: $parent.setPlace"></a>
           <hr/>
@@ -23,6 +32,9 @@
       </div>
     </div>
   </div>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <script src="js/lib/knockout-3.4.2.js"></script>
   <script src="js/my.js"></script>
   <script async defer
