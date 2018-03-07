@@ -60,15 +60,18 @@ var ViewModel = function() {
   this.setMiles = function(milesSelected) {
     self.milesFilter = milesSelected;
     for (var i = 0; i < self.places().length; i++) {
+      thisplace = self.places()[i];
       // TODO: call google maps distance matrix to get distance between house and this place
       // https://developers.google.com/maps/documentation/javascript/distancematrix
 
       // For now, hard-coded distances...
-      if (self.places()[i].dist() <= milesSelected) {
-        self.places()[i].isVisible(true);
+      if (thisplace.dist() <= milesSelected) {
+        thisplace.isVisible(true);
+        self.markers[i].setMap(Neighborhood);
       }
       else {
-        self.places()[i].isVisible(false);
+        thisplace.isVisible(false);
+        self.markers[i].setMap(null);
       }
     }
   };
