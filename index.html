@@ -14,8 +14,8 @@
         <h3>My Favorite Places</h3>
         <hr/>
         <div class="dropdown">
-          <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            X Miles Away From
+          <button class="btn btn-outline-secondary btn-sm dropdown-toggle btn-block" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            X Miles Away From House
           </button>
           <div class="dropdown-menu" data-bind="foreach: milesAway">
             <a class="dropdown-item" href="#" data-bind="text: $data, click: $parent.setMiles"></a>
@@ -23,8 +23,8 @@
         </div>
         <hr/>
         <div data-bind="foreach: places">
-          <a href="#" data-bind="text: name, click: $parent.setPlace"></a>
-          <hr/>
+          <button class="btn btn-primary btn-block" type="button" data-bind="text: name, click: $parent.setPlace, visible: isVisible"></a>
+          <br/>
         </div>
       </div>
       <div class="col-md-10">

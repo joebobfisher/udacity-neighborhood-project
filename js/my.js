@@ -1,11 +1,11 @@
 // Initial data
 var initialPlaces = [
-  { name: "House",         loc: { lat: 42.480018, lng: -92.363529 } },
-  { name: "Work",          loc: { lat: 42.478491, lng: -92.454093 } },
-  { name: "Grocery Store", loc: { lat: 42.458456, lng: -92.330557 } },
-  { name: "Church",        loc: { lat: 42.515738, lng: -92.413237 } },
-  { name: "Library",       loc: { lat: 42.496388, lng: -92.340966 } },
-  { name: "School",        loc: { lat: 42.479395, lng: -92.362301 } }
+  { name: "House",         loc: { lat: 42.480018, lng: -92.363529 }, dist: 0 },
+  { name: "Work",          loc: { lat: 42.478491, lng: -92.454093 }, dist: 6.2 },
+  { name: "Grocery Store", loc: { lat: 42.458456, lng: -92.330557 }, dist: 3.1 },
+  { name: "Church",        loc: { lat: 42.515738, lng: -92.413237 }, dist: 4.6 },
+  { name: "Library",       loc: { lat: 42.496388, lng: -92.340966 }, dist: 1.8 },
+  { name: "School",        loc: { lat: 42.479395, lng: -92.362301 }, dist: 0.1 }
 ];
 
 // Map & InfoWindow objects
@@ -18,6 +18,8 @@ var infoWindow;
 var Place = function(data) {
   this.name = ko.observable(data.name);
   this.loc = ko.observable(data.loc);
+  this.dist = ko.observable(data.dist);
+  this.isVisible = ko.observable(true);
 };
 
 var MilesAway = function(data) {
@@ -57,6 +59,18 @@ var ViewModel = function() {
   this.milesFilter = ko.observable(this.milesAway()[this.milesAway().length-1]);
   this.setMiles = function(milesSelected) {
     self.milesFilter = milesSelected;
+    for (var i = 0; i < self.places().length; i++) {
+      // TODO: call google maps distance matrix to get distance between house and this place
+      // https://developers.google.com/maps/documentation/javascript/distancematrix
+
+      // For now, hard-coded distances...
+      if (self.places()[i].dist() <= milesSelected) {
+        self.places()[i].isVisible(true);
+      }
+      else {
+        self.places()[i].isVisible(false);
+      }
+    }
   };
 };
 
