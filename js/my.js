@@ -68,6 +68,7 @@ var ViewModel = function() {
       if (thisplace.dist() <= milesSelected) {
         thisplace.isVisible(true);
         self.markers[i].setMap(Neighborhood);
+        // TODO: trigger animation when they show back up...
       }
       else {
         thisplace.isVisible(false);
