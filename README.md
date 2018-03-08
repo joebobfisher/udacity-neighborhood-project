@@ -35,6 +35,7 @@ view entry is clicked.
 * Animate map marker when list item or marker itself is clicked.
 * Handle errors gracefully
     * Handle "can't load" or "can't reach site" for all APIs called.
+* Make responsive
 
 ## Nice to Have
 

@@ -15,7 +15,8 @@ var infoWindow;
 // Model
 // Knockout should be used to handle the list, filter, and any other information
 // on the page that is subject to changing state.
-var Place = function(data) {
+var Place = function(index, data) {
+  this.id = ko.observable(index);
   this.name = ko.observable(data.name);
   this.loc = ko.observable(data.loc);
   this.dist = ko.observable(data.dist);
@@ -32,12 +33,14 @@ var ViewModel = function() {
 
   this.places = ko.observableArray([]);
 
-  initialPlaces.forEach(function(place) {
-    self.places.push(new Place(place));
-  });
+  for (var i=0; i<initialPlaces.length; i++) {
+    self.places.push(new Place(i, initialPlaces[i]));
+  }
 
+  // currently selected place
   this.place = ko.observable();
 
+  // this markers[] array shares the same indexing as places[]
   this.markers = [];
 
   this.setPlace = function(clickedPlace) {
@@ -45,13 +48,8 @@ var ViewModel = function() {
 
     Neighborhood.setCenter(self.place().loc());
 
-    var marker;
-    for (var i = 0; i < self.places().length; i++) {
-      if (self.place().loc() === self.places()[i].loc()) {
-        marker = self.markers[i];
-        break;
-      }
-    }
+    var marker = self.markers[self.place().id()];
+
     doInfoWindow(marker, infoWindow);
   };
 
