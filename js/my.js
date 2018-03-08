@@ -48,9 +48,7 @@ var ViewModel = function() {
 
     Neighborhood.setCenter(self.place().loc());
 
-    var marker = self.markers[self.place().id()];
-
-    doInfoWindow(marker, infoWindow);
+    doInfoWindow(self.place().id(), infoWindow);
   };
 
   this.milesAway = ko.observableArray([1, 2, 5, 10]);
@@ -104,7 +102,8 @@ function startMap() {
     vm.markers.push(marker);
 
     marker.addListener('click', function() {
-      doInfoWindow(this, infoWindow);
+      // add a listener for doInfoWindow() to last marker we pushed
+      doInfoWindow(vm.markers.length-1, infoWindow);
     });
 
     bounds.extend(marker.position);
@@ -113,7 +112,9 @@ function startMap() {
   Neighborhood.fitBounds(bounds);
 }
 
-function doInfoWindow(marker, infoWindow) {
+function doInfoWindow(i, infoWindow) {
+  var marker = vm.markers[i];
+
   if (infoWindow.marker != marker) {
     infoWindow.marker = marker;
     infoWindow.addListener('closeclick', function() {
