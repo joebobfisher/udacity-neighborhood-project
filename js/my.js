@@ -111,9 +111,12 @@ function startMap() {
 
 function doInfoWindow(i, infoWindow) {
   var marker = vm.markers[i];
-  var fsqData = {};
+  var fsqData;
+  var content;
 
   if (infoWindow.marker != marker) {
+    content = "<div id='content'><h1>" + marker.title + "</h1>";
+
     $.getJSON("https://api.foursquare.com/v2/venues/search",
               { client_id: 'PPLTRCLFQWHDYILXAT3G3B0RLK15VFLQIUT4KT51AXAVFAL2',
                 client_secret: 'D2FQPOZDFUQGYURIAGEJZRYN1XG3BFRYNEHWXSR1DPF41HYY',
@@ -122,23 +125,22 @@ function doInfoWindow(i, infoWindow) {
                 limit: 1 })
       .done(function(json) {
         fsqData = json;
+        content += "<div id='bodyContent'>" + "<p><b>Nearest Foursquare Veunue: </b>" +
+            marker.title + "</p></div>";
       })
       .fail(function(jqxhr, textStatus, error) {
         fsqData = { error_text: textStatus + ": " + error };
+        content += "<p><em>No Foursquare data could be obtained at this time.</em></p>";
+        content += "<p><em>Error: '" + fsqData + "'</em></p>";
+      })
+      .always(function() {
+        content += "</div>";
+        infoWindow.marker = marker;
+        infoWindow.addListener('closeclick', function() {
+          infoWindow.marker = null;
+        });
+        infoWindow.setContent(content);
+        infoWindow.open(Neighborhood, marker);
       });
-
-    console.log(fsqData);
-
-    var content = "<div id='content'><h1>" + marker.title + "</h1>" +
-      "<div id='bodyContent'>" + "<p><b>Nearest Foursquare Veunue: </b>" +
-      marker.title + "</p>" +
-      "</div></div>";
-
-    infoWindow.marker = marker;
-    infoWindow.addListener('closeclick', function() {
-      infoWindow.marker = null;
-    });
-    infoWindow.setContent(content);
-    infoWindow.open(Neighborhood, marker);
   }
 }
