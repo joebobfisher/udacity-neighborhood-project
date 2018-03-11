@@ -28,10 +28,10 @@ page is loaded.~~
         * ~~So move the map to the selected marker, if selected in the list view!~~
     * ~~Can't use a 3rd part API for this search/filter.~~
     * ~~Filter can be text or dropdown menu~~
-* Use non-Google Maps 3rd party APIs to give info when a map marker or list
-view entry is clicked.
-    * Implement as infoWindow (or in the sidebar/list view)
-* Provide attribution to data sources/APIs used.
+* ~~Use non-Google Maps 3rd party APIs to give info when a map marker or list
+view entry is clicked.~~
+    * ~~Implement as infoWindow (or in the sidebar/list view)~~
+* ~~Provide attribution to data sources/APIs used.~~
 * Animate map marker when list item or marker itself is clicked.
 * Handle errors gracefully
     * Handle "can't load" or "can't reach site" for all APIs called.

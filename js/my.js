@@ -125,8 +125,19 @@ function doInfoWindow(i, infoWindow) {
                 limit: 1 })
       .done(function(json) {
         fsqData = json;
-        content += "<div id='bodyContent'>" + "<p><b>Nearest Foursquare Veunue: </b>" +
-            marker.title + "</p></div>";
+        content += "<div id='bodyContent'>" + "<h4>Foursquare Veunue Details</h4>" +
+            "<p>" + fsqData.response.venues[0].name + "<br/>" +
+            fsqData.response.venues[0].location.address + "<br/>" +
+            fsqData.response.venues[0].location.city + ", " +
+            fsqData.response.venues[0].location.state + " " +
+            fsqData.response.venues[0].location.postalCode + "</p>" +
+            "<p><b>Category: </b>" +
+            fsqData.response.venues[0].categories[0].shortName + "</p>" +
+            "<p><b>People There Now: </b><em>" +
+            fsqData.response.venues[0].hereNow.summary + " (" +
+            fsqData.response.venues[0].hereNow.count + ")</em></p>" +
+            "<p><em>Location details provided by <a href='https://foursquare.com'>Foursquare</a></em></p>" +
+            "</div>";
       })
       .fail(function(jqxhr, textStatus, error) {
         fsqData = { error_text: textStatus + ": " + error };
