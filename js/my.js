@@ -114,6 +114,9 @@ function doInfoWindow(i, infoWindow) {
   var fsqData;
   var content;
 
+  // toggle back and forth between bouncing and non-bouncing
+  bounce(marker);
+
   if (infoWindow.marker != marker) {
     content = "<div id='content'><h1>" + marker.title + "</h1>";
 
@@ -153,5 +156,15 @@ function doInfoWindow(i, infoWindow) {
         infoWindow.setContent(content);
         infoWindow.open(Neighborhood, marker);
       });
+  }
+}
+
+function bounce(marker) {
+  if (marker.getAnimation() !== null) {
+    marker.setAnimation(null);
+  }
+  else {
+    // make marker bounce
+    marker.setAnimation(google.maps.Animation.BOUNCE);
   }
 }
