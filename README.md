@@ -33,8 +33,8 @@ view entry is clicked.~~
     * ~~Implement as infoWindow (or in the sidebar/list view)~~
 * ~~Provide attribution to data sources/APIs used.~~
 * ~~Animate map marker when list item or marker itself is clicked.~~
-* Handle errors gracefully
-    * Handle "can't load" or "can't reach site" for all APIs called.
+* ~~Handle errors gracefully~~
+    * ~~Handle "can't load" or "can't reach site" for all APIs called.~~
 * Make responsive
 
 ## Nice to Have
@@ -50,3 +50,4 @@ view entry is clicked.~~
 
 * [KnockoutJS](http://knockoutjs.com/)
 * [Google Maps APIs](https://developers.google.com/maps/)
+* [Foursquare API](https://developer.foursquare.com)
