@@ -114,10 +114,10 @@ function doInfoWindow(i, infoWindow) {
   var fsqData;
   var content;
 
-  // toggle back and forth between bouncing and non-bouncing
-  bounce(marker);
-
   if (infoWindow.marker != marker) {
+    // toggle back and forth between bouncing and non-bouncing
+    bounce(marker);
+
     content = "<div id='content'><h1>" + marker.title + "</h1>";
 
     $.getJSON("https://api.foursquare.com/v2/venues/search",
@@ -160,11 +160,9 @@ function doInfoWindow(i, infoWindow) {
 }
 
 function bounce(marker) {
-  if (marker.getAnimation() !== null) {
-    marker.setAnimation(null);
-  }
-  else {
     // make marker bounce
     marker.setAnimation(google.maps.Animation.BOUNCE);
-  }
+
+    // make it stop
+    setTimeout(function() { marker.setAnimation(null); }, 2200);
 }

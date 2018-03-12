@@ -32,7 +32,7 @@ page is loaded.~~
 view entry is clicked.~~
     * ~~Implement as infoWindow (or in the sidebar/list view)~~
 * ~~Provide attribution to data sources/APIs used.~~
-* Animate map marker when list item or marker itself is clicked.
+* ~~Animate map marker when list item or marker itself is clicked.~~
 * Handle errors gracefully
     * Handle "can't load" or "can't reach site" for all APIs called.
 * Make responsive
