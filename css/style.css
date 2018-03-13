@@ -1,5 +1,6 @@
 html, body, .container-fluid, .row, #map {
   height: 100%;
+  width: 100%;
 }
 
 .container-fluid {
@@ -18,4 +19,8 @@ html, body, .container-fluid, .row, #map {
     padding-left: 0;
     padding-right: 0;
   }
+}
+
+.col-md-10 {
+  min-height: 200px;
 }

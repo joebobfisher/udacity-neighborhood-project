@@ -10,6 +10,9 @@
 <body>
   <div class="container-fluid">
     <div class="row no-gutters">
+      <div class="col-md-10">
+        <div id="map"></div>
+      </div>
       <div class="col-md-2">
         <h3>My Favorite Places</h3>
         <hr/>
@@ -26,9 +29,6 @@
           <button class="btn btn-primary btn-block" type="button" data-bind="text: name, click: $parent.setPlace, visible: isVisible"></a>
           <br/>
         </div>
-      </div>
-      <div class="col-md-10">
-        <div id="map"></div>
       </div>
     </div>
   </div>
