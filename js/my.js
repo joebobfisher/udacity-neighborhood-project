@@ -24,7 +24,7 @@ var Place = function(index, data) {
 
 var MilesAway = function(data) {
   this.miles = ko.observable(data);
-}
+};
 
 // View Model
 var ViewModel = function() {
@@ -98,15 +98,20 @@ function startMap() {
 
     vm.markers.push(marker);
 
-    marker.addListener('click', function() {
-      // add a listener for doInfoWindow() to last marker we pushed
-      doInfoWindow(this.id, infoWindow);
-    });
+    // doing it this way to get around JSHint W083 (don't make functions in a loop)
+    marker.addListener('click', giveInfoWindowFunction(marker.id));
 
     bounds.extend(marker.position);
   }
 
   Neighborhood.fitBounds(bounds);
+}
+
+function giveInfoWindowFunction(markerId) {
+  return function () {
+    // add a listener for doInfoWindow() to last marker we pushed
+    doInfoWindow(markerId, infoWindow);
+  };
 }
 
 function doInfoWindow(i, infoWindow) {
