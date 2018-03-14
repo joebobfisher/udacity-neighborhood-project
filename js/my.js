@@ -133,24 +133,35 @@ function doInfoWindow(i, infoWindow) {
                 limit: 1 })
       .done(function(json) {
         fsqData = json;
+        var venue = fsqData.response.venues[0];
+
+        // make sure properties are set to something
+        venue.name                    = venue.name                        ? venue.name                    : "<em>property not available</em>";
+        venue.location.address        = venue.location.address            ? venue.location.address        : "<em>property not available</em>";
+        venue.location.city           = venue.location.city               ? venue.location.city           : "<em>property not available</em>";
+        venue.location.state          = venue.location.state              ? venue.location.state          : "<em>property not available</em>";
+        venue.location.postalCode     = venue.location.postalCode         ? venue.location.postalCode     : "<em>property not available</em>";
+        venue.categories[0].shortName = venue.categories[0].shortName     ? venue.categories[0].shortName : "<em>property not available</em>";
+        venue.hereNow.summary         = venue.hereNow.summary             ? venue.hereNow.summary         : "<em>property not available</em>";
+        venue.hereNow.count           = venue.hereNow.count !== undefined ? venue.hereNow.count           : "<em>property not available</em>";
+
         content += "<div id='bodyContent'>" + "<h4>Foursquare Veunue Details</h4>" +
-            "<p>" + fsqData.response.venues[0].name + "<br/>" +
-            fsqData.response.venues[0].location.address + "<br/>" +
-            fsqData.response.venues[0].location.city + ", " +
-            fsqData.response.venues[0].location.state + " " +
-            fsqData.response.venues[0].location.postalCode + "</p>" +
+            "<p>" + venue.name + "<br/>" +
+            venue.location.address + "<br/>" +
+            venue.location.city + ", " +
+            venue.location.state + " " +
+            venue.location.postalCode + "</p>" +
             "<p><b>Category: </b>" +
-            fsqData.response.venues[0].categories[0].shortName + "</p>" +
+            venue.categories[0].shortName + "</p>" +
             "<p><b>People There Now: </b><em>" +
-            fsqData.response.venues[0].hereNow.summary + " (" +
-            fsqData.response.venues[0].hereNow.count + ")</em></p>" +
+            venue.hereNow.summary + " (" +
+            venue.hereNow.count + ")</em></p>" +
             "<p><em>Location details provided by <a href='https://foursquare.com'>Foursquare</a></em></p>" +
             "</div>";
       })
       .fail(function(jqxhr, textStatus, error) {
-        fsqData = { error_text: textStatus + ": " + error };
         content += "<p><em>No Foursquare data could be obtained at this time.</em></p>";
-        content += "<p><em>Error: '" + fsqData + "'</em></p>";
+        content += "<p><em>Error '" + textStatus + "' " + error + "</em></p>";
       })
       .always(function() {
         content += "</div>";
@@ -170,4 +181,9 @@ function bounce(marker) {
 
     // make it stop
     setTimeout(function() { marker.setAnimation(null); }, 2200);
+}
+
+function mapsError() {
+  var mapdiv = document.getElementById('map');
+  mapdiv.innerHTML = "<h4 class='center error'>Whoa! Can't load Google Maps right now. Sorry!</h4>"
 }

@@ -24,3 +24,15 @@ html, body, .container-fluid, .row, #map {
 .col-md-10 {
   min-height: 200px;
 }
+
+.center {
+  position: absolute;
+  top: 45%;
+  left: 25%;
+  margin-left: -50px;
+  margin-top: -25px;
+}
+
+.error {
+  color: #aaaaaa;
+}

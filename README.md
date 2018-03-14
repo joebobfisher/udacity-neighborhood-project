@@ -8,7 +8,10 @@ places.
 
 ## How to Use
 
-Select any of the buttons off to the right, or any marker on the map, to get Foursquare data on that place. You can also use the _X Miles Away_ dropdown to only see the places that are _X_ miles away from my house, or nearer.
+1. Clone the code from the GitHub repository to your machine.
+1. Open `index.html` in your favorite browser. If your favorite browser is not available, use your second favorite.
+1. Select any of the buttons off to the right, or any marker on the map, to get Foursquare data on that place.
+1. You can also use the _X Miles Away_ dropdown to only see the places that are _X_ miles away from my house, or nearer.
 
 ## Attributions and Stuff I Used
 
