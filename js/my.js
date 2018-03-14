@@ -185,5 +185,5 @@ function bounce(marker) {
 
 function mapsError() {
   var mapdiv = document.getElementById('map');
-  mapdiv.innerHTML = "<h4 class='center error'>Whoa! Can't load Google Maps right now. Sorry!</h4>"
+  mapdiv.innerHTML = "<h4 class='center error'>Whoa! Can't load Google Maps right now. Sorry!</h4>";
 }
